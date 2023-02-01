@@ -1,0 +1,21 @@
+# 应用名称
+spring:
+  application:
+    name: orange-frame-auth
+  cloud:
+    nacos:
+      # 注册服务
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    connect-timeout: 1000
+
+server:
+  port: 9003
+
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybais.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orange.frame.rbac.mapper.UserRoleMapper">
+    <resultMap id="UserResultMap" type="com.orange.frame.common.entity.OrangeUser">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="enabled" property="enabled"/>
+        <result column="accountNonExpired" property="accountNonExpired"/>
+        <result column="accountNonLocked" property="accountNonLocked"/>
+        <result column="credentialsNonExpired" property="credentialsNonExpired"/>
+        <collection property="roleList"
+                    select="selectRoleByUser"
+                    column="id"/>
+
+    </resultMap>
+    <resultMap id="RoleResultMap" type="com.orange.frame.common.entity.OrangeRole">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="desc" property="desc"/>
+        <collection property="derivedRoleList"
+                    ofType="com.orange.eneity.OrangeRole"
+                    select="selectDerivedRoleList"
+                    column="id"
+        />
+        <collection property="baseRoleList"
+                    ofType="com.orange.eneity.OrangeRole"
+                    select="selectBaseRoleList"
+                    column="id"
+        />
+
+    </resultMap>
+    <!--这里使用type而不使用type是为了防止递归-->
+    <select id="selectDerivedRoleList" resultType="com.orange.frame.common.entity.OrangeRole">
+        select r2.*
+        from role r1
+                 LEFT JOIN role_role rr on r1.id = rr.base_role_id
+                 LEFT JOIN role r2 on rr.derived_role_id = r2.id
+        WHERE r1.id = #{id}
+    </select>
+    <!--这里使用map进行递归处理-->
+    <select id="selectBaseRoleList" resultMap="RoleResultMap">
+        select r1.*
+        from role r1
+                 LEFT JOIN role_role rr on r1.id = rr.base_role_id
+                 LEFT JOIN role r2 on rr.derived_role_id = r2.id
+        WHERE r2.id = #{id}
+    </select>
+    <select id="selectRoleByUser" resultMap="RoleResultMap">
+        SELECT r.*
+        FROM `user` u
+                 LEFT JOIN user_role ur ON u.id = ur.uid
+                 LEFT JOIN role r ON ur.rid = r.id
+        WHERE u.id = #{id}
+    </select>
+    <select id="selectUserWithRoles" resultMap="UserResultMap">
+        select id,
+               username,
+               password,
+               enabled,
+               account_non_expired accountNonExpired,
+               account_non_locked accountNonLocked,
+               credentials_non_expired credentialsNonExpired
+        from user
+        where username = #{username}
+    </select>
+
+</mapper>
