@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybais.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orange.frame.rbac.mapper.UserMapper">
+
+    <select id="loadUserByUsername" resultType="com.orange.frame.common.entity.OrangeUser">
+        select id,
+               username,
+               password,
+               enabled,
+               account_non_expired accountNonExpired,
+               account_non_locked accountNonLocked,
+               credentials_non_expired credentialsNonExpired
+        from user
+        where username = #{username}
+    </select>
+</mapper>

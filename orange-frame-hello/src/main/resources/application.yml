@@ -1,0 +1,15 @@
+# 应用名称
+spring:
+  application:
+    name: orange-frame-hello
+  cloud:
+    nacos:
+      # 注册服务
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+server:
+  port: 9001
+
+

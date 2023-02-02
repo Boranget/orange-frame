@@ -1,0 +1,54 @@
+# 应用名称
+spring:
+  application:
+    name: orange-frame-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator: # 配置处理机制
+          # 只要请求地址符合规则: http://gatewayIP:gatewayPort/微服务名称/微服务请求地址
+          # 网关会自动映射,将该请求转发为: http://微服务名称/微服务请求地址
+          # for example
+          # 请求地址: http://localhost:8080/auth/getUsernames
+          # 转发成为: http://auth/getUsernames
+          # 并且自带负载均衡
+          # 商业开发中,enabled一般不设置,使用默认值false,避免不必要的自动转发
+          enabled: false #开启网关自动映射处理逻辑
+          lower-case-service-id: true #使用小写服务名，默认是大写
+      routes:
+        - id: orange-frame-hello
+          uri: lb://orange-frame-hello
+          predicates:
+            - Path=/hello/**
+          filters:
+            - StripPrefix=1
+        - id: orange-frame-auth
+          uri: lb://orange-frame-auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+        - id: orange-frame-rbac
+          uri: lb://orange-frame-rbac
+          predicates:
+            - Path=/rbac/**
+          filters:
+            - StripPrefix=1
+    nacos:
+      # 注册服务
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    connect-timeout: 1000
+server:
+  port: 9000
+orange:
+  gateway:
+    filter-white-list:
+      urls:
+        - "/getToken"

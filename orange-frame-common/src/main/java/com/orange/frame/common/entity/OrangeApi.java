@@ -2,6 +2,8 @@ package com.orange.frame.common.entity;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 接口
  * @author boranget
@@ -28,4 +30,8 @@ public class OrangeApi {
      * 描述
      */
     String desc;
+    /**
+     * 访问该api所需角色
+     */
+    List<OrangeRole> roleList;
 }

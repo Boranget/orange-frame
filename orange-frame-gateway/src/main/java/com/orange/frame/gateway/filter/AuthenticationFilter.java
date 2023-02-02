@@ -69,6 +69,7 @@ public class AuthenticationFilter implements GlobalFilter {
                 // 未过时则放行
                 return chain.filter(exchange);
             } else {
+                // 这里可以加一个删除过时token操作
                 response.setStatusCode(HttpStatus.UNAUTHORIZED);
                 return response.setComplete();
             }

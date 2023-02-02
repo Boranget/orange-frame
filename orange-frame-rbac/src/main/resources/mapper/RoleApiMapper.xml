@@ -3,5 +3,25 @@
         PUBLIC "-//mybais.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orange.frame.rbac.mapper.RoleApiMapper">
-
+    <resultMap id="ApiWithRoleResultMap" type="com.orange.frame.common.entity.OrangeApi">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="permission" property="permission"/>
+        <result column="pattern" property="pattern"/>
+        <result column="desc" property="desc"/>
+        <collection property="roleList" column="id" select="selectRoleByApi"/>
+    </resultMap>
+    <select id="selectRoleByApi" resultType="com.orange.frame.common.entity.OrangeRole">
+        select
+            r.*
+        from api a
+                 LEFT JOIN api_role al on a.id = al.aid
+                 LEFT JOIN role r ON al.rid = r.id
+        WHERE a.id = #{id}
+    </select>
+    <select id="selectAllApiWithRole" resultMap="ApiWithRoleResultMap" >
+        select
+            api.*
+        FROM api
+    </select>
 </mapper>

@@ -36,7 +36,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-        <!-- Alibaba在2021版本nacos中删除了Ribbon的jar包-->
+        <!-- feign需要, Alibaba在2021版本nacos中删除了Ribbon的jar包-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
