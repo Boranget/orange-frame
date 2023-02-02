@@ -74,7 +74,7 @@ public class AuthorizationFilter implements GlobalFilter {
                 List<OrangeRole> needRoleList = orangeApi.getRoleList();
                 for (OrangeRole needRole : needRoleList) {
                     for (OrangeRole hasRole: userRoleList){
-                       // TODO 进行一个角色的匹配
+                       // 角色的匹配
                         boolean can = thisRoleCan(needRole, hasRole);
                         if(can){
                             return chain.filter(exchange);
@@ -87,6 +87,13 @@ public class AuthorizationFilter implements GlobalFilter {
         response.setStatusCode(HttpStatus.UNAUTHORIZED);
         return response.setComplete();
     }
+
+    /**
+     * 判断给定角色能否匹配需要的角色
+     * @param needRole
+     * @param hasRole
+     * @return
+     */
     public boolean thisRoleCan(OrangeRole needRole, OrangeRole hasRole){
         if(needRole.getId() .equals(hasRole.getId()) ){
             return true;
