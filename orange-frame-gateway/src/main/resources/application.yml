@@ -51,4 +51,4 @@ orange:
   gateway:
     filter-white-list:
       urls:
-        - "/getToken"
+        - "/get_token"

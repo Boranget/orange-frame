@@ -32,7 +32,7 @@ public class LoginController {
      * @param requestParam
      * @return
      */
-    @RequestMapping(value = "/getToken", method = RequestMethod.POST)
+    @RequestMapping(value = "/get_token", method = RequestMethod.POST)
     public CommonResult<String> getToken(@RequestBody Map<String, String> requestParam) {
         // 通过传入用户名查找用户信息
         OrangeUser user = rbacService.selectUserWithRoles(requestParam.get("username"));
@@ -70,7 +70,7 @@ public class LoginController {
      * @param requestParam
      * @return
      */
-    @RequestMapping(value = "/getTokenInfo", method = RequestMethod.POST)
+    @RequestMapping(value = "/get_token_info", method = RequestMethod.POST)
     public CommonResult<Object> getTokenInfo(@RequestBody Map<String, String> requestParam) {
         return CommonResult.success(redisService.hGet(RedisConstant.TOKEN_INFO_KEY,requestParam.get("token")));
     }

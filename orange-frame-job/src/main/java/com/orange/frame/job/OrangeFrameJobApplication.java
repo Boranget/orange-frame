@@ -1,13 +1,13 @@
-package com.orange.frame.redis;
+package com.orange.frame.job;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OrangeFrameRedisSpringBootStarterApplication {
+public class OrangeFrameJobApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OrangeFrameRedisSpringBootStarterApplication.class, args);
+        SpringApplication.run(OrangeFrameJobApplication.class, args);
     }
 
 }

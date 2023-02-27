@@ -15,6 +15,8 @@ import java.util.List;
 /**
  * @author boranget
  * @date 2023/2/2
+ * 在本服务启动时
+ * 将所有api-role映射关系存放到数据库
  */
 @Component
 @Order(1)

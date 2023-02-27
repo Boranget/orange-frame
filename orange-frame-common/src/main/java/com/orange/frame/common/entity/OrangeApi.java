@@ -13,25 +13,25 @@ public class OrangeApi {
     /**
      * id
      */
-    String id;
+    private Long id;
     /**
      * 接口名
      */
-    String name;
+    private String name;
     /**
      * 权限标识
      */
-    String permission;
+    private  String permission;
     /**
      * 对应的地址
      */
-    String pattern;
+    private String pattern;
     /**
      * 描述
      */
-    String desc;
+    private  String desc;
     /**
      * 访问该api所需角色
      */
-    List<OrangeRole> roleList;
+    private List<OrangeRole> roleList;
 }

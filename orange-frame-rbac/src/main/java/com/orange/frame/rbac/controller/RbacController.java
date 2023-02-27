@@ -20,15 +20,33 @@ public class RbacController {
     UserRoleService userRoleService;
     @Autowired
     RoleApiService roleApiService;
-    @RequestMapping(value = "/loadUserByUsername",method = RequestMethod.GET)
+
+    /**
+     * 根据用户名查找用户信息
+     * @param username
+     * @return
+     */
+    @RequestMapping(value = "/load_user_by_username",method = RequestMethod.GET)
     public OrangeUser loadUserByUsername(@RequestParam("username")String username){
         return userService.loadUserByUsername(username);
     }
-    @RequestMapping(value = "/selectUserWithRoles",method = RequestMethod.GET)
+
+    /**
+     * 根据用户名查找用户信息，但是携带角色信息
+     * @param username
+     * @return
+     */
+    @RequestMapping(value = "/select_user_with_roles",method = RequestMethod.GET)
     public OrangeUser selectUserWithRoles(@RequestParam("username")String username){
         return userRoleService.selectUserWithRoles(username);
     }
-    @RequestMapping(value = "/selectAllApiWithRole", method = RequestMethod.GET)
+
+    /**
+     * 查找出所有api，携带角色信息
+     * 用于redis网关鉴权
+     * @return
+     */
+    @RequestMapping(value = "/select_all_api_with_role", method = RequestMethod.GET)
     public List<OrangeApi> selectAllApiWithRole(){
         return roleApiService.selectAllApiWithRole();
     }

@@ -12,7 +12,7 @@ public class OrangeUser {
     /**
      * id
      */
-    private String id;
+    private Long id;
     /**
      * 用户名
      */

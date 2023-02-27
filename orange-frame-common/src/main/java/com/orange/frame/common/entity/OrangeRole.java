@@ -14,31 +14,31 @@ public class OrangeRole {
     /**
      * id
      */
-    String id;
+    private Long id;
     /**
      * 角色名
      */
-    String name;
+    private String name;
     /**
      * 描述
      */
-    String desc;
+    private String desc;
     /**
      * 派生角色
      */
-    List<OrangeRole> derivedRoleList;
+    private List<OrangeRole> derivedRoleList;
     /**
      * 基角色
      */
-    List<OrangeRole> baseRoleList;
+    private List<OrangeRole> baseRoleList;
     /**
      * 菜单列表
      */
-    List<OrangeMenu> menuList;
+    private  List<OrangeMenu> menuList;
     /**
      * 接口列表
      */
-    List<OrangeApi> apiList;
+    private  List<OrangeApi> apiList;
 
 
 }

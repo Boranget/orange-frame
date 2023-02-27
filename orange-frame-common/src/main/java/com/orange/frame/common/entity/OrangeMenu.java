@@ -13,35 +13,35 @@ public class OrangeMenu {
     /**
      * id
      */
-    String id;
+    private Long id;
     /**
      * 菜单名
      */
-    String name;
+    private  String name;
     /**
      * 权限标识
      */
-    String permission;
+    private  String permission;
     /**
      * 对应地址
      */
 
-    String pattern;
+    private String pattern;
     /**
      * 父级菜单
      */
-    String parent;
+    private  String parent;
     /**
      * 排序字段
      */
-    Long sort;
+    private  Long sort;
     /**
      * 描述
      */
-    String desc;
+    private  String desc;
     /**
      * 子菜单列表
      */
-    List<OrangeMenu> subMenuList;
+    private  List<OrangeMenu> subMenuList;
 
 }

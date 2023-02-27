@@ -20,6 +20,7 @@
         <module>orange-frame-auth</module>
         <module>orange-frame-rbac</module>
         <module>orange-frame-common</module>
+        <module>orange-frame-job</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

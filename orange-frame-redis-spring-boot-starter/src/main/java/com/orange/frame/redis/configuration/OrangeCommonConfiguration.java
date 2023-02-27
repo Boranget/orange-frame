@@ -24,7 +24,7 @@ public class OrangeCommonConfiguration {
     /**
      * 注入自定义的 redisTemplate
      * 若存在配置 orange.common.redis-service.enabled = true 则注入
-     * bean名字为orangeRedisTemplate防止冲突
+     * bean名字为orangeRedisTemplate防止与已有redisTemplate冲突
      * @param factory
      * @return
      */
