@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(value = "orange-frame-rbac")
 public interface RbacService {
-    @RequestMapping(value = "/loadUserByUsername",method = RequestMethod.GET)
+    @RequestMapping(value = "/load_user_by_username",method = RequestMethod.GET)
     public OrangeUser loadUserByUsername(@RequestParam("username")String username);
-    @RequestMapping(value = "/selectUserWithRoles",method = RequestMethod.GET)
+    @RequestMapping(value = "/select_user_with_roles",method = RequestMethod.GET)
     public OrangeUser selectUserWithRoles(@RequestParam("username")String username);
 }
